@@ -7,6 +7,18 @@
 
 - /react-auth-complete: finished project
 
+***To USE***
+
+- `git clone https://github.com/VSchool/react-auth-series.git`
+- *you can view completed project in /react-auth-complete*
+- from within /react-auth-start, install server dependencies: `npm install`
+- run server: `nodemon index.js`
+- `cd client`
+- form within /react-auth-start/client folder, install front-end dependencies: `npm install`
+- run react-server: `npm start`
+- Follow tutorial: LINK
+
 **GOAL**
 - Learn how to implement a basic user authentication feature within a React application.
-- Follow tutorial <LINK HERE>
+- Follow tutorial here: LINK
+
