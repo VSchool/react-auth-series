@@ -1,6 +1,7 @@
 import axios from "axios";
 const todoUrl = "http://localhost:5000/todo/";
 
+//TODOS
 function setTodos(todos) {
     return {
         type: "SET_TODOS",
