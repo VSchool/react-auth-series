@@ -1,5 +1,19 @@
 import axios from "axios";
+
 const todoUrl = "http://localhost:5000/todo/";
+const userUrl = "http://localhost:5000/auth/";
+
+export function signup(credentials){
+    return (dispatch)=>{
+        axios.post(userUrl + "signup", credentials)
+        .then((response)=>{
+            console.log(response.data);
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    }
+}
 
 //TODOS
 function setTodos(todos) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SignupComponent from "./Component";
 import {connect} from "react-redux";
+import {signup} from "../../../redux/actions/index";
 
 class SignupContainer extends Component {
     constructor() {
@@ -35,8 +36,7 @@ class SignupContainer extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        // This is where we will call our signup function from redux
-        alert(JSON.stringify(this.state.inputs));
+        this.props.signup(this.state.inputs);
         this.clearInputs();
     }
     render() {
@@ -50,7 +50,7 @@ class SignupContainer extends Component {
     }
 }
 
-export default connect(null,{})(SignupContainer);
+export default connect(null,{signup})(SignupContainer);
 
 
 
