@@ -3,11 +3,11 @@
     text-align: center;
 }
 
-.app-wrapper{
+.app-wrapper {
     height: 100vh;
 }
 
-.navbar-wrapper{
+.navbar-wrapper {
     width: 50%;
     margin: auto;
     display: flex;
