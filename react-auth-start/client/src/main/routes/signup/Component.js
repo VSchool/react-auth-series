@@ -10,6 +10,7 @@ export default class SignupComponent extends Component {
                     <input onChange={this.props.handleChange} value={this.props.email} name="email" type="email" placeholder="Email" />
                     <input onChange={this.props.handleChange} value={this.props.password} name="password" type="password" placeholder="#" />
                     <button type="submit">Create Account</button>
+                    <p>{this.props.errMsg}</p>
                 </form>
             </div>
         )

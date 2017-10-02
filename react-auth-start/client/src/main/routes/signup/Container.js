@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SignupComponent from "./Component";
-import {connect} from "react-redux";
-import {signup} from "../../../redux/actions/index";
+import { connect } from "react-redux";
+import { signup } from "../../../redux/actions/index";
 
 class SignupContainer extends Component {
     constructor() {
@@ -40,17 +40,28 @@ class SignupContainer extends Component {
         this.clearInputs();
     }
     render() {
+        let authErrCode = this.props.authErrCode.signup;
+        let errMsg = "";
+        if (authErrCode < 500 && authErrCode > 399) {
+            errMsg = "Invalid username or password!";
+        } else if (authErrCode > 499) {
+            errMsg = "Server error!";
+        }
         return (
             <SignupComponent
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
-                authError={this.props.authError}
+                errMsg={errMsg}
                 {...this.state.inputs} />
         )
     }
 }
 
-export default connect(null,{signup})(SignupContainer);
+const mapStateToProps = (state) => {
+    return state;
+}
+
+export default connect(mapStateToProps, { signup })(SignupContainer);
 
 
 

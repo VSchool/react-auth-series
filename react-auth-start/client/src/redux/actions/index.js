@@ -3,15 +3,33 @@ import axios from "axios";
 const todoUrl = "http://localhost:5000/todo/";
 const userUrl = "http://localhost:5000/auth/";
 
-export function signup(credentials){
-    return (dispatch)=>{
+function logon(success, user) {
+    return {
+        type: "LOGON",
+        success,
+        user
+    }
+}
+function handleAuthErr(key, errCode) {
+    return {
+        type: "HANDLE_AUTH_ERR",
+        key,
+        errCode
+    }
+}
+
+export function signup(credentials) {
+    return (dispatch) => {
         axios.post(userUrl + "signup", credentials)
-        .then((response)=>{
-            console.log(response.data);
-        })
-        .catch((err)=>{
-            console.error(err);
-        })
+            .then((response) => {
+                let { token, user, success } = response.data;
+                localStorage.setItem("token", token);
+                dispatch(logon(success, user));
+            })
+            .catch((err) => {
+                console.error(err);
+                dispatch(handleAuthErr("signup", err.response.status));
+            })
     }
 }
 
@@ -59,7 +77,7 @@ export function editTodo(id, todo) {
     }
 }
 
-export function deleteTodo(id){
+export function deleteTodo(id) {
     return (dispatch) => {
         axios.delete(todoUrl + id)
             .then((response) => {
@@ -68,5 +86,5 @@ export function deleteTodo(id){
             .catch((err) => {
                 console.error(err);
             })
-    } 
+    }
 }
