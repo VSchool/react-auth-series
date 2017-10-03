@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import LoginComponent from "./Component";
+import SigninComponent from "./Component";
 import {connect} from "react-redux";
+import {signin} from "../../../redux/actions/index";
 
-class LoginContainer extends Component {
+class SigninContainer extends Component {
     constructor() {
         super();
         this.state = {
@@ -33,19 +34,29 @@ class LoginContainer extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        // This is where we will call our login function from redux
-        alert(JSON.stringify(this.state.inputs));
+        this.props.signin(this.state.inputs);
         this.clearInputs();
     }
     render() {
+        let authErrCode = this.props.authErrCode.signin;
+        let errMsg = "";
+        if (authErrCode < 500 && authErrCode > 399) {
+            errMsg = "Invalid username or password!";
+        } else if (authErrCode > 499) {
+            errMsg = "Server error!";
+        }
         return (
-            <LoginComponent
+            <SigninComponent
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
-                authError={this.props.authError}
+                errMsg={errMsg}
                 {...this.state.inputs} />
         )
     }
 }
 
-export default connect(null,{})(LoginContainer);
+const mapStateToProps = (state)=>{
+    return state;
+}
+
+export default connect(mapStateToProps,{signin})(SigninContainer);

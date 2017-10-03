@@ -7,7 +7,7 @@ let defaultState = {
     },
     authErrCode: {
         signup: "",
-        login: ""
+        signin: ""
     },
     isAuthenticated: false
 }
@@ -29,7 +29,7 @@ const mainReducer = (state = defaultState, action) => {
                 isAuthenticated: action.success,
                 authErrCode: {
                     signup: "",
-                    login: ""
+                    signin: ""
                 }
             }
         case "SET_TODOS":

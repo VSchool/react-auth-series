@@ -33,6 +33,21 @@ export function signup(credentials) {
     }
 }
 
+export function signin(credentials) {
+    return (dispatch) => {
+        axios.post(userUrl + "login", credentials)
+            .then((response) => {
+                let { token, user, success } = response.data;
+                localStorage.setItem("token", token);
+                dispatch(logon(success, user));
+            })
+            .catch((err) => {
+                console.error(err);
+                dispatch(handleAuthErr("signin", err.response.status));
+            })
+    }
+}
+
 //TODOS
 function setTodos(todos) {
     return {

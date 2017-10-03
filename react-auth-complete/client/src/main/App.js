@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { Route, Switch } from "react-router-dom";
 
 import SignupContainer from "./routes/signup/Container";
-import LoginContainer from "./routes/login/Container";
+import SigninContainer from "./routes/signin/Container";
 import TodosContainer from "./routes/todos/Container";
 
 export default class App extends Component {
@@ -13,7 +13,7 @@ export default class App extends Component {
                 <Navbar />
                 <Switch>
                     <Route exact path="/" component={SignupContainer} />
-                    <Route path="/login" component={LoginContainer} />
+                    <Route path="/signin" component={SigninContainer} />
                     <Route path="/todos" component={TodosContainer}/>
                     <Route path="/profile" />
                 </Switch>
