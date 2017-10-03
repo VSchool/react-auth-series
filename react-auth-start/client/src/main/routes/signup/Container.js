@@ -44,7 +44,6 @@ class SignupContainer extends Component {
             <SignupComponent
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
-                authError={this.props.authError}
                 {...this.state.inputs} />
         )
     }

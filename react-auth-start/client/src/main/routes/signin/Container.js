@@ -42,7 +42,6 @@ class SigninContainer extends Component {
             <SigninComponent
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
-                authError={this.props.authError}
                 {...this.state.inputs} />
         )
     }
