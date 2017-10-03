@@ -8,6 +8,7 @@ let cors = require("cors");
 //import routes
 let todoRouter = require("./routes/todo.js");
 let authRouter = require("./routes/auth.js");
+let profileRoute = require("./routes/profile.js");
 
 //connect to db
 mongoose.connect("mongodb://localhost/todo-auth-example");
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 //use routes
 app.use("/todo", todoRouter);
 app.use("/auth", authRouter);  
+app.use("/profile", profileRoute);
 
 //setup logging
 app.use(morgan("dev"));
