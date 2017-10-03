@@ -48,6 +48,13 @@ export function signin(credentials) {
     }
 }
 
+export function logout(){
+    localStorage.removeItem("token");
+    return {
+        type: "LOGOUT"
+    }
+}
+
 //TODOS
 function setTodos(todos) {
     return {
