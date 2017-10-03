@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import SignupContainer from "./routes/signup/Container";
 import SigninContainer from "./routes/signin/Container";
 import TodosContainer from "./routes/todos/Container";
+import ProfileComponent from "./routes/profile/Component";
 
 export default class App extends Component {
     render() {
@@ -15,7 +16,7 @@ export default class App extends Component {
                     <Route exact path="/" component={SignupContainer} />
                     <Route path="/signin" component={SigninContainer} />
                     <Route path="/todos" component={TodosContainer}/>
-                    <Route path="/profile" />
+                    <Route path="/profile" component={ProfileComponent}/>
                 </Switch>
             </div>
         )

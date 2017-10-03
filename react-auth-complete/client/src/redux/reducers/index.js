@@ -32,6 +32,10 @@ const mainReducer = (state = defaultState, action) => {
                     signin: ""
                 }
             }
+            case "LOGOUT":
+            return {
+                ...defaultState
+            }
         case "SET_TODOS":
             return {
                 ...state,
