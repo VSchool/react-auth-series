@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignupComponent from "./Component";
 import { connect } from "react-redux";
 import { signup } from "../../../redux/actions/index";
+import { Redirect } from "react-router-dom";
 
 class SignupContainer extends Component {
     constructor() {
@@ -47,12 +48,15 @@ class SignupContainer extends Component {
         } else if (authErrCode > 499) {
             errMsg = "Server error!";
         }
+        const isAuthenticated = this.props.isAuthenticated;
         return (
-            <SignupComponent
-                handleChange={this.handleChange.bind(this)}
-                handleSubmit={this.handleSubmit.bind(this)}
-                errMsg={errMsg}
-                {...this.state.inputs} />
+            isAuthenticated ?
+                <Redirect to="/profile" /> :
+                <SignupComponent
+                    handleChange={this.handleChange.bind(this)}
+                    handleSubmit={this.handleSubmit.bind(this)}
+                    errMsg={errMsg}
+                    {...this.state.inputs} />
         )
     }
 }

@@ -1,5 +1,11 @@
 import axios from "axios";
 
+axios.interceptors.request.use((config)=>{
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
+
 const todoUrl = "http://localhost:5000/todo/";
 const userUrl = "http://localhost:5000/auth/";
 

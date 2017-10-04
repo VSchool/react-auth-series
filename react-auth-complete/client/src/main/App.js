@@ -6,6 +6,7 @@ import SignupContainer from "./routes/signup/Container";
 import SigninContainer from "./routes/signin/Container";
 import TodosContainer from "./routes/todos/Container";
 import ProfileComponent from "./routes/profile/Component";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 export default class App extends Component {
     render() {
@@ -15,8 +16,8 @@ export default class App extends Component {
                 <Switch>
                     <Route exact path="/" component={SignupContainer} />
                     <Route path="/signin" component={SigninContainer} />
-                    <Route path="/todos" component={TodosContainer}/>
-                    <Route path="/profile" component={ProfileComponent}/>
+                    <ProtectedRoute path="/todos" component={TodosContainer}/>
+                    <ProtectedRoute path="/profile" component={ProfileComponent}/>
                 </Switch>
             </div>
         )
