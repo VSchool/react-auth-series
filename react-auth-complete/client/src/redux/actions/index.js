@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.interceptors.request.use((config)=>{
+axios.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
     config.headers.Authorization = `Bearer ${token}`;
     return config;
@@ -8,6 +8,20 @@ axios.interceptors.request.use((config)=>{
 
 const todoUrl = "http://localhost:5000/todo/";
 const userUrl = "http://localhost:5000/auth/";
+const profileUrl = "http://localhost:5000/profile/";
+
+export function verify() {
+    return (dispatch) => {
+        axios.get(profileUrl + "verify")
+            .then((response) => {
+                let { success, user } = response.data;
+                dispatch(logon(success, user));
+            })
+            .catch((err) => {
+                console.error(err);
+            })
+    }
+}
 
 function logon(success, user) {
     return {
@@ -54,7 +68,7 @@ export function signin(credentials) {
     }
 }
 
-export function logout(){
+export function logout() {
     localStorage.removeItem("token");
     return {
         type: "LOGOUT"

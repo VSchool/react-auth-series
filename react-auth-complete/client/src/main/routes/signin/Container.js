@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import SigninComponent from "./Component";
 import { connect } from "react-redux";
 import { signin } from "../../../redux/actions/index";
-import { Redirect } from "react-router-dom";
 
 class SigninContainer extends Component {
     constructor() {
@@ -46,10 +45,7 @@ class SigninContainer extends Component {
         } else if (authErrCode > 499) {
             errMsg = "Server error!";
         }
-        const isAuthenticated = this.props.isAuthenticated;
         return (
-            isAuthenticated ?
-                <Redirect to="/profile" /> :
                 <SigninComponent
                     handleChange={this.handleChange.bind(this)}
                     handleSubmit={this.handleSubmit.bind(this)}
