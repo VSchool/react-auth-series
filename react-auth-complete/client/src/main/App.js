@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from "./Navbar";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
 import SignupContainer from "./routes/signup/Container";
 import SigninContainer from "./routes/signin/Container";
@@ -8,14 +8,29 @@ import TodosContainer from "./routes/todos/Container";
 import ProfileComponent from "./routes/profile/Component";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
-export default class App extends Component {
+import {connect} from "react-redux";
+import {verify} from "../redux/actions/index";
+
+class App extends Component {
+    componentDidMount(){
+        this.props.verify();
+    }
     render() {
+        const isAuthenticated = this.props.isAuthenticated;
         return (
             <div className="app-wrapper">
                 <Navbar />
                 <Switch>
-                    <Route exact path="/" component={SignupContainer} />
-                    <Route path="/signin" component={SigninContainer} />
+                    <Route exact path="/" render={(props)=>{
+                       return  isAuthenticated ?
+                        <Redirect to= "/profile"/> :
+                        <SignupContainer {...props}/>
+                    }}/>
+                    <Route path="/signin" render={(props)=>{
+                       return  isAuthenticated ?
+                        <Redirect to= "/profile"/> :
+                        <SigninContainer {...props}/>
+                    }} />
                     <ProtectedRoute path="/todos" component={TodosContainer}/>
                     <ProtectedRoute path="/profile" component={ProfileComponent}/>
                 </Switch>
@@ -23,3 +38,8 @@ export default class App extends Component {
         )
     }
 }
+const mapStateToProps = (state) =>{
+    return state;
+}
+
+export default withRouter(connect(mapStateToProps,{verify})(App));

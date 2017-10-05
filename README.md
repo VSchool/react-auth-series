@@ -16,9 +16,13 @@
 - `cd client`
 - form within /react-auth-start/client folder, install front-end dependencies: `npm install`
 - run react-server: `npm start`
-- Follow tutorial: LINK
+- Follow tutorial: 
+PART ONE: `https://coursework.vschool.io/react-token-authentication-pt-1/`
+PART TWO: `https://coursework.vschool.io/react-token-authentication-pt-2/`
 
 **GOAL**
 - Learn how to implement a basic user authentication feature within a React application.
-- Follow tutorial here: LINK
+- Follow tutorial here: 
+PART ONE: `https://coursework.vschool.io/react-token-authentication-pt-1/`
+PART TWO: `https://coursework.vschool.io/react-token-authentication-pt-2/`
 
