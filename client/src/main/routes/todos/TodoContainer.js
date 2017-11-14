@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import TodoComponent from "./Component";
+import Todo from "./Todo";
 import {connect} from "react-redux";
-import {editTodo, deleteTodo} from "../../../../redux/todos";
+import {editTodo, deleteTodo} from "../../../redux/todos";
 
 class TodoContainer extends Component {
     
     handleCompleted(e){
         this.props.editTodo(this.props.id, {completed: e.target.checked})
     }
+
     handleRemove(){
         this.props.deleteTodo(this.props.id);
     }
+
     render() {
         return (
-            <TodoComponent
+            <Todo
             handleCompleted={this.handleCompleted.bind(this)}
             handleRemove={this.handleRemove.bind(this)}
                 todo={this.props.todo}

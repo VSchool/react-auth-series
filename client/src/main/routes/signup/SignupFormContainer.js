@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import SigninComponent from "./Component";
-import {connect} from "react-redux";
+import React, {Component} from 'react';
+import SignupForm from "./SignupForm";
 
-class SigninContainer extends Component {
+class SignupFormContainer extends Component {
     constructor() {
         super();
         this.state = {
             inputs: {
                 username: "",
-                password: ""
+                password: "",
+                email: ""
             }
         }
     }
+
     handleChange(e) {
         e.persist();
         this.setState((prevState) => {
@@ -23,23 +24,27 @@ class SigninContainer extends Component {
             }
         })
     }
+
     clearInputs() {
         this.setState({
             inputs: {
                 username: "",
-                password: ""
+                password: "",
+                email: ""
             }
         })
     }
+
     handleSubmit(e) {
         e.preventDefault();
-        // This is where we will call our signin function from redux
+        // This is where we will call our signup function from redux
         alert(JSON.stringify(this.state.inputs));
         this.clearInputs();
     }
+
     render() {
         return (
-            <SigninComponent
+            <SignupForm
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
                 {...this.state.inputs} />
@@ -47,4 +52,7 @@ class SigninContainer extends Component {
     }
 }
 
-export default connect(null,{})(SigninContainer);
+export default SignupFormContainer;
+
+
+

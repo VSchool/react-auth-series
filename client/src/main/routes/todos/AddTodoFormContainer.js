@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import SignupComponent from "./Component";
+import React, {Component} from 'react';
+import AddTodoForm from "./AddTodoForm";
 import {connect} from "react-redux";
+import {addTodo} from "../../../redux/todos";
 
-class SignupContainer extends Component {
+class AddTodoFormContainer extends Component {
     constructor() {
         super();
         this.state = {
             inputs: {
-                username: "",
-                password: "",
-                email: ""
+                title: ""
             }
         }
     }
+
     handleChange(e) {
         e.persist();
         this.setState((prevState) => {
@@ -24,24 +24,24 @@ class SignupContainer extends Component {
             }
         })
     }
+
     clearInputs() {
         this.setState({
             inputs: {
-                username: "",
-                password: "",
-                email: ""
+                title: ""
             }
         })
     }
+
     handleSubmit(e) {
         e.preventDefault();
-        // This is where we will call our signup function from redux
-        alert(JSON.stringify(this.state.inputs));
-        this.clearInputs();
+        this.props.addTodo(this.state.inputs);
+        this.clearInputs()
     }
+
     render() {
         return (
-            <SignupComponent
+            <AddTodoForm
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
                 {...this.state.inputs} />
@@ -49,7 +49,4 @@ class SignupContainer extends Component {
     }
 }
 
-export default connect(null,{})(SignupContainer);
-
-
-
+export default connect(null, {addTodo})(AddTodoFormContainer);

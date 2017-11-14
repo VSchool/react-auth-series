@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import TodoFormComponent from "./Component";
-import {connect} from "react-redux";
-import {addTodo} from "../../../../redux/todos";
+import React, { Component } from 'react';
+import SigninForm from "./SigninForm";
 
-class TodosFormContainer extends Component {
+class SigninFormContainer extends Component {
     constructor() {
         super();
         this.state = {
             inputs: {
-                title: ""
+                username: "",
+                password: ""
             }
         }
     }
@@ -28,20 +27,22 @@ class TodosFormContainer extends Component {
     clearInputs() {
         this.setState({
             inputs: {
-                title: ""
+                username: "",
+                password: ""
             }
         })
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addTodo(this.state.inputs);
-        this.clearInputs()
+        // This is where we will call our signin function from redux
+        alert(JSON.stringify(this.state.inputs));
+        this.clearInputs();
     }
 
     render() {
         return (
-            <TodoFormComponent
+            <SigninForm
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
                 {...this.state.inputs} />
@@ -49,4 +50,4 @@ class TodosFormContainer extends Component {
     }
 }
 
-export default connect(null, {addTodo})(TodosFormContainer);
+export default SigninFormContainer;

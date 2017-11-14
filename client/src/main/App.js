@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Navbar from "./Navbar";
 import { Route, Switch } from "react-router-dom";
 
-import SignupContainer from "./routes/signup/Container";
-import SigninContainer from "./routes/signin/Container";
-import TodosContainer from "./routes/todos/Container";
+import SignupContainer from "./routes/signup/SignupFormContainer";
+import SigninContainer from "./routes/signin/SigninFormContainer";
+import TodosContainer from "./routes/todos/TodoListContainer";
 
 export default class App extends Component {
     render() {
