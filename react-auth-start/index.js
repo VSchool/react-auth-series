@@ -1,17 +1,23 @@
-let express = require("express");
-let mongoose = require("mongoose");
-let bodyParser = require("body-parser");
-let morgan = require("morgan");
-let path = require("path");
-let cors = require("cors");
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const path = require("path");
+const cors = require("cors");
 
 //import routes
-let todoRouter = require("./routes/todo.js");
-let authRouter = require("./routes/auth.js");
-let profileRoute = require("./routes/profile.js");
+const todoRouter = require("./routes/todo.js");
+const authRouter = require("./routes/auth.js");
+const profileRoute = require("./routes/profile.js");
 
 //connect to db
-mongoose.connect("mongodb://localhost/todo-auth-example");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost/todo-auth-example",
+    {useMongoClient: true},
+    err => {
+        if (err) throw err;
+        console.log("Connected to the database");
+    });
 
 //base express app
 const app = express();
