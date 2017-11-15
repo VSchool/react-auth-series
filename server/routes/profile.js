@@ -1,6 +1,6 @@
 let express = require("express");
 let expressJwt = require("express-jwt");
-let settings = require("../settings.js");
+let settings = require("../config.js");
 let User = require("../models/user.js");
 
 let profileRoute = express.Router();
