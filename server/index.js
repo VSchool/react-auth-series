@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const expressJwt = require("express-jwt");
+const config = require("./config");
 const PORT = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
@@ -27,7 +28,6 @@ app.use("/api", expressJwt({secret: config.secret}));
 // Add `/api` before your existing `app.use` of the todo routes.
 // This way, it must go through the express-jwt middleware before accessing any todos
 app.use("/api/todo", require("./routes/todo.js"));
-app.use("/api/profile", require("./routes/profile.js"));
 
 app.use("/auth", require("./routes/auth.js"));
 
