@@ -21,7 +21,6 @@ mongoose.connect("mongodb://localhost/todo-auth-example",
 );
 
 app.use("/todo", require("./routes/todo.js"));
-app.use("/profile", require("./routes/profile.js"));
 
 app.listen(PORT, () => {
     console.log(`[+] Starting server on port ${PORT}`);
