@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const expressJwt = require("express-jwt");
 const PORT = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
@@ -21,11 +20,8 @@ mongoose.connect("mongodb://localhost/todo-auth-example",
     }
 );
 
-app.use("/api", expressJwt({secret: config.secret}));
-app.use("/api/todo", require("./routes/todo.js"));
-app.use("/api/profile", require("./routes/profile.js"));
-
-app.use("/auth", require("./routes/auth.js"));
+app.use("/todo", require("./routes/todo.js"));
+app.use("/profile", require("./routes/profile.js"));
 
 app.listen(PORT, () => {
     console.log(`[+] Starting server on port ${PORT}`);

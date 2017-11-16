@@ -22,4 +22,3 @@ React User Authentication Tutorial
 - Follow tutorial here: 
 - PART ONE: https://coursework.vschool.io/react-token-authentication-pt-1/
 - PART TWO: https://coursework.vschool.io/react-token-authentication-pt-2/
-
