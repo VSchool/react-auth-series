@@ -1,16 +1,13 @@
-##########################
-#REACT_USER_AUTH_TUTORIAL#
-##########################
+React User Authentication Tutorial
+==================================
 
-*INCLUDES:*
-- /react-auth-start: express server with auth and todo routes. Assumes prior knowledge of backend user authentication. Contains a wireframe front-end interface with react-router and redux from which to start implementing a user authentication feature.
+**INCLUDES:**
+* All the server-side project code with JWT authentication set up as found in [part 1 of the authentication series](https://coursework.vschool.io/token-auth-with-jwts-part1/)
+* The boilerplate React code for a simple todo project with sign in and sign up routes
 
-- /react-auth-complete: finished project
-
-***To USE***
+**To USE**
 
 - `git clone https://github.com/VSchool/react-auth-series.git`
-- *you can view completed project in /react-auth-complete*
 - from within /react-auth-start, install server dependencies: `npm install`
 - run server: `nodemon index.js`
 - `cd client`
