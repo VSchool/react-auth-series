@@ -1,5 +1,5 @@
 {
-  "name": "react-auth-pt1",
+  "name": "token-auth-series",
   "version": "1.1.0",
   "description": "The server-side beginning setup for learning token authentication in React. For instructions on server-side setup, please visit https://coursework.vschool.io/token-auth-with-jwts-part1/",
   "main": "index.js",
