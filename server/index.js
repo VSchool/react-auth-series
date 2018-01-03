@@ -3,12 +3,10 @@ const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(cors());
 
 //connect to db
 mongoose.Promise = global.Promise;
