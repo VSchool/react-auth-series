@@ -1,7 +1,7 @@
 const express = require("express")
-const config = require("../config");
 const User = require("../models/user");
 const authRouter = express.Router();
+const jwt = require("jsonwebtoken");
 
 authRouter.post("/signup", (req, res) => {
     User.findOne({username: req.body.username}, (err, result) => {
@@ -23,7 +23,7 @@ authRouter.post("/login", (req, res) => {
         if (!user || user.password !== req.body.password) {
             return res.status(403).send({success: false, message: "Email or password are incorrect"})
         }
-        const token = jwt.sign(user.toObject(), config.secret, {expiresIn: "24h"});
+        const token = jwt.sign(user.toObject(), process.env.SECRET, {expiresIn: "24h"});
         return res.send({token: token, user: user.toObject(), success: true, message: "Here's your token!"})
     });
 });

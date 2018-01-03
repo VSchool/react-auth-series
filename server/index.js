@@ -1,16 +1,14 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const expressJwt = require("express-jwt");
-const config = require("./config");
 const PORT = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(cors());
 
 //connect to db
 mongoose.Promise = global.Promise;
@@ -23,7 +21,7 @@ mongoose.connect("mongodb://localhost/todo-auth-example",
 );
 
 // Make the app use the express-jwt authentication middleware on anything starting with "/api"
-app.use("/api", expressJwt({secret: config.secret}));
+app.use("/api", expressJwt({secret: process.env.SECRET}));
 
 // Add `/api` before your existing `app.use` of the todo routes.
 // This way, it must go through the express-jwt middleware before accessing any todos
