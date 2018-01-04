@@ -1,6 +1,10 @@
-import {combineReducers} from "redux";
+import {combineReducers, createStore, applyMiddleware} from "redux";
+import thunk from "redux-thunk";
+
 import todos from "./todos";
 
-export default combineReducers({
+const reducer = combineReducers({
     todos
 });
+
+export default createStore(reducer, applyMiddleware(thunk));

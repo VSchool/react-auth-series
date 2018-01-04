@@ -1,10 +1,10 @@
 import React from 'react'
 
-function SigninForm(props) {
+function LoginForm(props) {
     return (
         <div className="form-wrapper">
             <form onSubmit={props.handleSubmit}>
-                <h3>Sign In</h3>
+                <h3>Log In</h3>
                 <input
                     onChange={props.handleChange}
                     value={props.username}
@@ -23,4 +23,4 @@ function SigninForm(props) {
     )
 }
 
-export default SigninForm;
+export default LoginForm;

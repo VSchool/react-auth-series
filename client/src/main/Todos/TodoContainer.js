@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Todo from "./Todo";
 import {connect} from "react-redux";
-import {editTodo, deleteTodo} from "../../../redux/todos";
+import {editTodo, deleteTodo} from "../../redux/todos";
 
 class TodoContainer extends Component {
     
