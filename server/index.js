@@ -20,11 +20,11 @@ mongoose.connect("mongodb://localhost/todo-auth-example",
     }
 );
 
-app.use("/api", expressJwt({secret: config.secret}));
-app.use("/api/todo", require("./routes/todo.js"));
-app.use("/api/profile", require("./routes/profile.js"));
+app.use("/api", expressJwt({secret: process.env.SECRET}));
+app.use("/api/todo", require("./routes/todo"));
+app.use("/api/profile", require("./routes/profile"));
 
-app.use("/auth", require("./routes/auth.js"));
+app.use("/auth", require("./routes/auth"));
 
 app.listen(PORT, () => {
     console.log(`[+] Starting server on port ${PORT}`);
