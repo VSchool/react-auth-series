@@ -1,15 +1,14 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const expressJwt = require("express-jwt");
 const PORT = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(cors());
 
 //connect to db
 mongoose.Promise = global.Promise;
