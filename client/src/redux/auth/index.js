@@ -1,10 +1,12 @@
 import axios from "axios";
 
-export function signup(credentials) {
+export function signup(userInfo) {
     return dispatch => {
-        axios.post("/auth/signup", credentials)
+        axios.post("/auth/signup", userInfo)
             .then(response => {
-                console.log(response.data);
+                const {token, user} = response.data;
+                localStorage.token = JSON.stringify(token);
+                localStorage.user = JSON.stringify(user);
             })
             .catch(err => {
                 console.error(err);
