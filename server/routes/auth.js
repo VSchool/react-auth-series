@@ -12,7 +12,8 @@ authRouter.post("/signup", (req, res) => {
         const newUser = new User(req.body);
         newUser.save((err, user) => {
             if (err) return res.status(500).send({success: false, err});
-            return res.status(201).send({success: true, user});
+            const token = jwt.sign(user.toObject(), process.env.SECRET);
+            return res.status(201).send({success: true, user: user.toObject(), token});
         });
     });
 });
