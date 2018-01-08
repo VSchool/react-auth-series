@@ -3,9 +3,9 @@ const User = require("../models/user");
 const authRouter = express.Router();
 
 authRouter.post("/signup", (req, res) => {
-    User.findOne({username: req.body.username}, (err, result) => {
+    User.findOne({username: req.body.username}, (err, existingUser) => {
         if (err) return res.status(500).send({success: false, err});
-        if (result !== null) {
+        if (existingUser !== null) {
             return res.status(400).send({success: false, err: "That username already exists!"});
         }
         const newUser = new User(req.body);
