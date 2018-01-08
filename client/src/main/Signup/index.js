@@ -54,6 +54,3 @@ class SignupFormContainer extends Component {
 }
 
 export default connect(null, {signup})(SignupFormContainer);
-
-
-

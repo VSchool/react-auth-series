@@ -10,13 +10,13 @@ function LoginForm(props) {
                     value={props.username}
                     name="username"
                     type="text"
-                    placeholder="@Username"/>
+                    placeholder="Username"/>
                 <input
                     onChange={props.handleChange}
                     value={props.password}
                     name="password"
                     type="password"
-                    placeholder="#"/>
+                    placeholder="Password"/>
                 <button type="submit">Submit</button>
             </form>
         </div>

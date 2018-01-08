@@ -71,7 +71,8 @@ export default function todosReducer(todos = initialTodos, action) {
     switch (action.type) {
         case "SET_TODOS":
             return [...action.todos]
-
+        case "LOGOUT":
+            return initialTodos;
         default:
             return todos
     }
