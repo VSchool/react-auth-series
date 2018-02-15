@@ -6,20 +6,20 @@ function SignupForm(props) {
             <form onSubmit={props.handleSubmit}>
                 <h3>Sign Up</h3>
                 <input onChange={props.handleChange}
+                       value={props.name}
+                       name="name"
+                       type="text"
+                       placeholder="Name"/>
+                <input onChange={props.handleChange}
                        value={props.username}
                        name="username"
                        type="text"
-                       placeholder="@Username"/>
-                <input onChange={props.handleChange}
-                       value={props.email}
-                       name="email"
-                       type="email"
-                       placeholder="Email"/>
+                       placeholder="Username"/>
                 <input onChange={props.handleChange}
                        value={props.password}
                        name="password"
                        type="password"
-                       placeholder="#"/>
+                       placeholder="Password"/>
                 <button type="submit">Create Account</button>
             </form>
         </div>

@@ -1,7 +1,7 @@
-let mongoose = require("mongoose");  
-let Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-let todoSchema = new Schema({  
+const todoSchema = new Schema({
     title: {
         type: String,
         required: true

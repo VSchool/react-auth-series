@@ -1,10 +1,7 @@
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
-let bcrypt = require("bcrypt");
-let salt = bcrypt.genSaltSync(10);
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-let userSchema = new Schema({
-    name: String,
+const userSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -15,32 +12,10 @@ let userSchema = new Schema({
         type: String,
         required: true
     },
-    admin: {
+    isAdmin: {
         type: Boolean,
         default: false
     }
 });
 
-//Note you must use `function` here because
-//you are referring to the this of the userSchema
-userSchema.pre("save", function (next) {
-    this.password = bcrypt.hashSync(this.password, salt)
-    next();
-});
-userSchema.methods.withoutPassword = function () {
-    let user = this.toObject();
-    delete user.password;
-    return user;
-};
-userSchema.methods.auth = function (passwordAttempt, cb) {
-    bcrypt.compare(passwordAttempt, this.password, (err, isMatch) => {
-        if (err) {
-            console.log(err);
-            cb(false);
-        } else {
-            cb(isMatch);
-        }
-    });
-};
-
-module.exports = mongoose.model("User", userSchema); 
+module.exports = mongoose.model("User", userSchema);

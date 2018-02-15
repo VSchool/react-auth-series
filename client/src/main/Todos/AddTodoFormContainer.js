@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
-import TodoList from "./TodoList";
+import AddTodoForm from "./AddTodoForm";
 import {connect} from "react-redux";
-import {loadTodos} from "../../../redux/todos";
+import {addTodo} from "../../redux/todos/index";
 
-class TodoListContainer extends Component {
-
-    componentDidMount() {
-        this.props.loadTodos();
+class AddTodoFormContainer extends Component {
+    constructor() {
+        super();
+        this.state = {
+            inputs: {
+                title: ""
+            }
+        }
     }
 
     handleChange(e) {
@@ -37,14 +41,12 @@ class TodoListContainer extends Component {
 
     render() {
         return (
-            <TodoList
-                todos={this.props.todos}/>
+            <AddTodoForm
+                handleChange={this.handleChange.bind(this)}
+                handleSubmit={this.handleSubmit.bind(this)}
+                {...this.state.inputs} />
         )
     }
 }
 
-const mapStateToProps = state => {
-    return state;
-}
-
-export default connect(mapStateToProps, {loadTodos})(TodoListContainer)
+export default connect(null, {addTodo})(AddTodoFormContainer);
