@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const SET_TODOS = "SET_TODOS";
-const todoUrl = "/todo/";
+const todoUrl = "/api/todo/";
 
 ///////////////////////////
 // Todos Action Creators //

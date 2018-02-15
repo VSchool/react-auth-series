@@ -3,7 +3,7 @@ const todoRouter = express.Router();
 const Todo = require("../models/todo");
 
 todoRouter.get("/", (req, res) => {
-    Todo.find({user: req.user._id}, (err, todos) => {
+    Todo.find({ user: req.user._id }, (err, todos) => {
         if (err) return res.status(500).send(err);
         return res.send(todos);
     });
@@ -11,7 +11,7 @@ todoRouter.get("/", (req, res) => {
 
 todoRouter.post("/", (req, res) => {
     const todo = new Todo(req.body);
-    todo.user = req.user;
+    todo.user = req.user._id;
     todo.save(function (err, newTodo) {
         if (err) return res.status(500).send(err);
         return res.status(201).send(newTodo);
@@ -19,7 +19,7 @@ todoRouter.post("/", (req, res) => {
 });
 
 todoRouter.get("/:todoId", (req, res) => {
-    Todo.findOne({_id: req.params.todoId, user: req.user._id}, (err, todo) => {
+    Todo.findOne({ _id: req.params.todoId, user: req.user._id }, (err, todo) => {
         if (err) return res.status(500).send(err);
         if (!todo) return res.status(404).send("No todo item found.");
         return res.send(todo);
@@ -28,9 +28,9 @@ todoRouter.get("/:todoId", (req, res) => {
 
 todoRouter.put("/:todoId", (req, res) => {
     Todo.findOneAndUpdate(
-        {_id: req.params.todoId,user: req.user._id},
+        { _id: req.params.todoId, user: req.user._id },
         req.body,
-        {new: true},
+        { new: true },
         (err, todo) => {
             if (err) return res.status(500).send(err);
             return res.send(todo);
@@ -39,7 +39,7 @@ todoRouter.put("/:todoId", (req, res) => {
 });
 
 todoRouter.delete("/:todoId", (req, res) => {
-    Todo.findOneAndRemove({_id: req.params.todoId, user: req.user._id}, (err, todo) => {
+    Todo.findOneAndRemove({ _id: req.params.todoId, user: req.user._id }, (err, todo) => {
         if (err) return res.status(500).send(err);
         return res.send(todo);
     });
