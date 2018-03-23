@@ -4,6 +4,13 @@ import {connect} from "react-redux";
 import {loadTodos} from "../../redux/todos";
 
 class TodoListContainer extends Component {
+    constructor(){
+        this.state = {
+            inputs: {
+                 title: ""
+            }
+        }
+    }
 
     componentDidMount() {
         this.props.loadTodos();
