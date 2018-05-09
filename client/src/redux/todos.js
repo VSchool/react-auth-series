@@ -8,6 +8,24 @@ todoAxios.interceptors.request.use((config)=>{
     return config;
 })
 
+
+///////////////////
+// Todos Reducer //
+///////////////////
+const initialTodos = [];
+
+export default function todosReducer(todos = initialTodos, action) {
+    switch (action.type) {
+        case "SET_TODOS":
+            return [...action.todos]
+        case "LOGOUT":
+            return initialTodos;
+        default:
+            return todos
+    }
+}
+
+
 const SET_TODOS = "SET_TODOS";
 const todoUrl = "/api/todo/";
 
@@ -69,19 +87,3 @@ export function deleteTodo(id) {
     }
 }
 
-
-///////////////////
-// Todos Reducer //
-///////////////////
-const initialTodos = [];
-
-export default function todosReducer(todos = initialTodos, action) {
-    switch (action.type) {
-        case "SET_TODOS":
-            return [...action.todos]
-        case "LOGOUT":
-            return initialTodos;
-        default:
-            return todos
-    }
-}
