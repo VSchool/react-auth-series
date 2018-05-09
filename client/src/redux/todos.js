@@ -3,6 +3,21 @@ import axios from "axios";
 const SET_TODOS = "SET_TODOS";
 const todoUrl = "/api/todo/";
 
+///////////////////
+// Todos Reducer //
+///////////////////
+const initialTodos = [];
+
+export default function todosReducer(todos = initialTodos, action) {
+    switch (action.type) {
+        case "SET_TODOS":
+            return [...action.todos]
+
+        default:
+            return todos
+    }
+}
+
 ///////////////////////////
 // Todos Action Creators //
 ///////////////////////////
@@ -62,17 +77,3 @@ export function deleteTodo(id){
 }
 
 
-///////////////////
-// Todos Reducer //
-///////////////////
-const initialTodos = [];
-
-export default function todosReducer(todos = initialTodos, action) {
-    switch (action.type) {
-        case "SET_TODOS":
-            return [...action.todos]
-
-        default:
-            return todos
-    }
-}
