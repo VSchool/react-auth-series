@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from "./LoginForm";
-import {connect} from "react-redux";
-import {login} from "../../redux/auth";
+import { connect } from "react-redux";
+import { login } from "../../redux/auth";
 
 class LoginFormContainer extends Component {
     constructor() {
@@ -42,13 +42,21 @@ class LoginFormContainer extends Component {
     }
 
     render() {
+        let authErrCode = this.props.authErrCode.login;
+        let errMsg = "";
+        if (authErrCode < 500 && authErrCode > 399) {
+            errMsg = "Invalid username or password!";
+        } else if (authErrCode > 499) {
+            errMsg = "Server error!";
+        }
         return (
             <LoginForm
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
+                errMsg={errMsg}
                 {...this.state.inputs} />
         )
     }
 }
 
-export default connect(null, { login })(LoginFormContainer); 
+export default connect(state => state.auth, { login })(LoginFormContainer); 

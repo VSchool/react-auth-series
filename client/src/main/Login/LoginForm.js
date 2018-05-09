@@ -18,6 +18,7 @@ function LoginForm(props) {
                     type="password"
                     placeholder="Password"/>
                 <button type="submit">Submit</button>
+                <p>{props.errMsg}</p>
             </form>
         </div>
     )

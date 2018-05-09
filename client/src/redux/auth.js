@@ -1,9 +1,21 @@
 import axios from "axios";
 
+const profileAxios = axios.create();
+profileAxios.interceptors.request.use(config => {
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
+
 const initialState = {
     username: "",
     isAdmin: false,
-    isAuthenticated: false
+    isAuthenticated: false,
+    authErrCode: {
+        signup: "",
+        login: ""
+    },
+    loading: true
 }
 
 export default function reducer(state = initialState, action) {
@@ -12,19 +24,53 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 ...action.user,
-                isAuthenticated: true
+                isAuthenticated: true,
+                authErrCode: initialState.authErrCode,
+                loading: false
             }
         case "LOGOUT":
-            return initialState;
+            return {
+                ...initialState,
+                loading: false
+            };
+        case "AUTH_ERROR":
+            return {
+                ...state,
+                authErrCode: {
+                    ...state.authErrCode,
+                    [action.key]: action.errCode
+                },
+                loading: false
+            }
         default:
             return state;
     }
 }
 
-export function authenticate(user) {
+function authError(key, errCode) {
+    return {
+        type: "AUTH_ERROR",
+        key,
+        errCode
+    }
+}
+function authenticate(user) {
     return {
         type: "AUTHENTICATE",
         user  // pass the user for storage in Redux store
+    }
+}
+
+export function verify() {
+    return dispatch => {
+        profileAxios.get("/api/profile")
+            .then(response => {
+                const { user } = response.data;
+                dispatch(authenticate(user));
+            })
+            .catch(err => {
+                dispatch(authError("verify", err.response.status));
+            })
     }
 }
 
@@ -37,8 +83,8 @@ export function signup(userInfo) {
                 localStorage.user = JSON.stringify(user);
                 dispatch(authenticate(user));
             })
-            .catch(err => {
-                console.error(err);
+            .catch((err) => {
+                dispatch(authError("signup", err.response.status));
             })
     }
 }
@@ -53,8 +99,8 @@ export function login(credentials) {
                 dispatch(authenticate(user));
             })
             .catch((err) => {
-                console.error(err);
-            });
+                dispatch(authError("login", err.response.status));
+            })
     }
 }
 
