@@ -1,5 +1,13 @@
 import axios from "axios";
 
+let todoAxios = axios.create();
+
+todoAxios.interceptors.request.use((config)=>{  
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
+
 const SET_TODOS = "SET_TODOS";
 const todoUrl = "/api/todo/";
 
@@ -15,7 +23,7 @@ function setTodos(todos) {
 
 export function loadTodos() {
     return dispatch => {
-        axios.get(todoUrl)
+        todoAxios.get(todoUrl)
             .then(response => {
                 dispatch(setTodos(response.data));
             })
@@ -27,7 +35,7 @@ export function loadTodos() {
 
 export function addTodo(todo) {
     return dispatch => {
-        axios.post(todoUrl, todo)
+        todoAxios.post(todoUrl, todo)
             .then(response => {
                 dispatch(loadTodos());
             })
@@ -39,7 +47,7 @@ export function addTodo(todo) {
 
 export function editTodo(id, todo) {
     return dispatch => {
-        axios.put(todoUrl + id, todo)
+        todoAxios.put(todoUrl + id, todo)
             .then(response => {
                 dispatch(loadTodos());
             })
@@ -49,9 +57,9 @@ export function editTodo(id, todo) {
     }
 }
 
-export function deleteTodo(id){
+export function deleteTodo(id) {
     return dispatch => {
-        axios.delete(todoUrl + id)
+        todoAxios.delete(todoUrl + id)
             .then(response => {
                 dispatch(loadTodos());
             })
@@ -71,7 +79,8 @@ export default function todosReducer(todos = initialTodos, action) {
     switch (action.type) {
         case "SET_TODOS":
             return [...action.todos]
-
+        case "LOGOUT":
+            return initialTodos;
         default:
             return todos
     }

@@ -2,9 +2,11 @@ import {combineReducers, createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 
 import todos from "./todos";
+import auth from "./auth";
 
 const reducer = combineReducers({
-    todos
+    todos,
+    auth
 });
 
 export default createStore(
