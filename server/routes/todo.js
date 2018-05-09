@@ -3,7 +3,7 @@ const todoRouter = express.Router();
 const Todo = require("../models/todo");
 
 todoRouter.get("/", (req, res) => {
-    Todo.find({user: req.user._id}, (err, todos) => {
+    Todo.find({user: req.user._id, ...req.query}, (err, todos) => {
         if (err) return res.status(500).send(err);
         return res.send(todos);
     });
