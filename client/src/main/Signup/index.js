@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import SignupForm from "./SignupForm";
 import {connect} from "react-redux";
 import {signup} from "../../redux/auth";
@@ -53,4 +53,7 @@ class SignupFormContainer extends Component {
     }
 }
 
-export default connect(null, {signup})(SignupFormContainer);
+export default connect(null, { signup })(SignupFormContainer);
+
+
+

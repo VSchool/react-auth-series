@@ -3,7 +3,6 @@ import LoginForm from "./LoginForm";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth";
 
-
 class LoginFormContainer extends Component {
     constructor() {
         super();
@@ -52,4 +51,4 @@ class LoginFormContainer extends Component {
     }
 }
 
-export default connect(null, {login})(LoginFormContainer);
+export default connect(null, { login })(LoginFormContainer); 

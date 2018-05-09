@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {logout} from "../../redux/auth";
+import {logout} from "../redux/auth";
 
 function Navbar(props) {
     return (
@@ -16,5 +16,4 @@ function Navbar(props) {
         </div>
     )
 }
-
-export default connect(null, {logout})(Navbar);
+export default connect(null, { logout })(Navbar);  
