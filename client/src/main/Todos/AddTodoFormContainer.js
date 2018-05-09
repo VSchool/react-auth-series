@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import AddTodoForm from "./AddTodoForm";
 import {connect} from "react-redux";
-import {addTodo} from "../../redux/todos/index";
+import {addTodo} from "../../redux/todos";
 
 class AddTodoFormContainer extends Component {
     constructor() {
